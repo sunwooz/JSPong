@@ -1,4 +1,4 @@
-function Ball(x, y, radius) {
+function Ball(x, y) {
   this.x = x;
   this.y = y;
   this.radius = 12;

@@ -5,4 +5,5 @@ $('#fullscreen').click(function() {
   } else {
     el.mozRequestFullScreen();
   }
+  document.body.style.cursor = 'none';
 });
