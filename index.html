@@ -1,0 +1,72 @@
+<html>
+  <style>
+    #canvas1 {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      position:absolute;
+      left: 0px;
+      top: 0px;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #fullscreen {
+      position:absolute;
+      top: 90%;
+      left: 10px;
+    }
+  </style>
+  <body>
+
+    <div id="gameArea">
+      <canvas id="canvas"></canvas>
+      <button id="fullscreen">Click to Play</button>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      var canvas;
+      var ctx;
+
+      var ball;
+      var player;
+      var tempY;
+
+      var WIDTH = $(window).width();
+      var HEIGHT = $(window).height();
+
+      var center = new vec2(WIDTH/2, HEIGHT/2)
+
+      function vec2(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+
+      window.onload = init;
+
+      function init() {
+        canvas = document.getElementById('canvas');
+        ctx = canvas.getContext('2d');
+
+        canvas.width = WIDTH;
+        canvas.height = HEIGHT;
+
+        ball = new Ball(center.x, center.y);
+        player = new Player(20);
+        runLoop();
+      }
+
+      function runLoop() {
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        player.update();
+        player.draw();
+        setTimeout(runLoop, 200);
+      }
+    </script>
+    <script type="text/javascript" src="models/ball.js"></script>
+    <script type="text/javascript" src="models/player.js"></script>
+    <script type="text/javascript" src="view/fullscreen.js"></script>
+  </body>
+</html>
