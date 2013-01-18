@@ -1,10 +1,18 @@
 <html>
   <style>
-    #canvas1 {
+    #playerCanvas {
       margin: 0;
       width: 100%;
       height: 100%;
       position:absolute;
+      left: 0px;
+      top: 0px;
+    }
+    #ballCanvas {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
       left: 0px;
       top: 0px;
     }
@@ -24,14 +32,17 @@
   <body>
 
     <div id="gameArea">
-      <canvas id="canvas"></canvas>
-      <button id="fullscreen">Click to Play</button>
+      <canvas id="playerCanvas"></canvas>
+      <canvas id="ballCanvas"></canvas>
+      <!-- <button id="fullscreen">Click to Play</button> -->
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
-      var canvas;
-      var ctx;
+      var playerCanvas;
+      var playerCtx;
+      var ballCanvas;
+      var ballCtx;
 
       var ball;
       var player;
@@ -50,26 +61,51 @@
       window.onload = init;
 
       function init() {
-        canvas = document.getElementById('canvas');
-        ctx = canvas.getContext('2d');
+        playerCanvas = document.getElementById('playerCanvas');
+        playerCtx = playerCanvas.getContext('2d');
+        ballCanvas = document.getElementById('ballCanvas');
+        ballCtx = ballCanvas.getContext('2d');
 
-        canvas.width = WIDTH;
-        canvas.height = HEIGHT;
+        playerCanvas.width = WIDTH;
+        playerCanvas.height = HEIGHT;
+        ballCanvas.width = WIDTH;
+        ballCanvas.height = HEIGHT;
 
-        ball = new Ball(center.x, center.y);
-        player = new Player(20);
-        runLoop();
+        spawnObjects();
+        animLoop();
       }
 
-      function runLoop() {
-        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      function spawnObjects() {
+        player = new Player(20);
+        ball = new Ball(center.x, center.y);
+      }
+
+      window.requestAnimFrame = (function() {
+        return window.requestAnimationFrame ||
+               window.webkitRequestAnimationFrame ||
+               window.mozRequestAnimationFrame ||
+               window.oRequestAnimationFrame ||
+               window.msRequestAnimationFrame ||
+               function(callback) {
+                 window.setTimeout(callback, 1000 / 60);
+               }
+      })();
+
+      function animLoop() {
+        requestAnimFrame(animLoop);
+
+        playerCtx.clearRect(0, 0, WIDTH, HEIGHT);
         player.update();
         player.draw();
-        setTimeout(runLoop, 200);
+
+        ballCtx.clearRect(0, 0, WIDTH, HEIGHT);
+        ball.update();
+        ball.draw();
+
       }
     </script>
     <script type="text/javascript" src="models/ball.js"></script>
     <script type="text/javascript" src="models/player.js"></script>
-    <script type="text/javascript" src="view/fullscreen.js"></script>
+    <!-- src="view/fullscreen.js" -->
   </body>
 </html>

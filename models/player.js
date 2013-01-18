@@ -5,7 +5,7 @@ function Player(y) {
   this.height = 60;
 
   this.update = function() {
-    $("#canvas").mousemove(function(event) {
+    $("#ballCanvas").mousemove(function(event) {
       tempY = event.pageY;
     });
     this.y = tempY;
@@ -13,6 +13,6 @@ function Player(y) {
 }
 
 Player.prototype.draw = function() {
-  ctx.fillRect(this.x, this.y-120, this.width, this.height);
+  playerCtx.fillRect(this.x, this.y-25, this.width, this.height);
 }
 
