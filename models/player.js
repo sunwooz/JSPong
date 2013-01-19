@@ -1,5 +1,5 @@
 function Player(y) {
-  this.x = 20;
+  this.x = 60;
   this.y = y;
   this.width = 20;
   this.height = 60;
