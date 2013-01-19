@@ -10,3 +10,8 @@ Goals
 + AI or human opponent
   + Use node.js for multiplayer functionality
 + Smooth Animations
+
+Known Bugs
+----------
+
++ Nothing shows up on Firefox

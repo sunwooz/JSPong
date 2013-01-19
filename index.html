@@ -21,7 +21,6 @@
     <script type="text/javascript">
       var canvas;
       var ctx;
-      var fps;
 
       var ball;
       var player;
@@ -53,6 +52,7 @@
       function spawnObjects() {
         player = new Player(20);
         ball = new Ball(center.x, center.y);
+        ball2 = new Ball(100,100);
       }
 
       window.requestAnimFrame = (function() {
@@ -65,30 +65,18 @@
                  window.setTimeout(callback, 1000 / 60);
                }
       })();
-      var lastLoop = new Date;
+
       function animLoop() {
         requestAnimFrame(animLoop);
 
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
-
-        writeFps();
-
-        ctx.font = '40px sans';
-        ctx.fillText(Math.round(fps), center.x, center.y);
 
         checkCollission();
         update();
         render();
       }
 
-      function writeFps() {
-        var thisLoop = new Date;
-        fps = 1000 / (thisLoop - lastLoop);
-        lastLoop = thisLoop;
-      }
-
       function update() {
-        player.update();
         ball.update();
       }
 
@@ -99,6 +87,5 @@
     </script>
     <script type="text/javascript" src="models/ball.js"></script>
     <script type="text/javascript" src="models/player.js"></script>
-    <!-- src="view/fullscreen.js" -->
   </body>
 </html>

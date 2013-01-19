@@ -10,8 +10,8 @@ Ball.prototype.draw = function() {
   ctx.beginPath();
   ctx.fillStyle = 'Green';
   ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI, false);
-  ctx.closePath();
   ctx.fill();
+  ctx.closePath();
 }
 
 Ball.prototype.update = function() {

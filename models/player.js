@@ -4,12 +4,11 @@ function Player(y) {
   this.width = 20;
   this.height = 60;
 
-  this.update = function() {
-    $("#c").mousemove(function(event) {
-      tempY = event.pageY;
-    });
-    this.y = tempY;
-  }
+  var that = this;
+
+  $('#c').mousemove(function(event) {
+    that.y = event.pageY;
+  });
 }
 
 Player.prototype.draw = function() {
