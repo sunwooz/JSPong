@@ -93,17 +93,20 @@
 
       function animLoop() {
         requestAnimFrame(animLoop);
-
-        playerCtx.clearRect(0, 0, WIDTH, HEIGHT);
-        player.update();
-        player.draw();
-
-
         ballCtx.clearRect(0, 0, WIDTH, HEIGHT);
+        playerCtx.clearRect(0, 0, WIDTH, HEIGHT);
         checkCollission();
-        ball.update();
-        ball.draw();
+        update();
+        render();
+      }
 
+      function update() {
+        player.update();
+        ball.update();
+      }
+      function render() {
+        player.draw();
+        ball.draw();
       }
     </script>
     <script type="text/javascript" src="models/ball.js"></script>

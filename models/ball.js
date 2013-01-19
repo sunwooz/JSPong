@@ -1,14 +1,17 @@
 function Ball(x, y) {
   this.x = x;
   this.y = y;
-  this.velocity = new vec2(Math.cos(45) * 3, Math.sin(45) * 3);
+  this.speed = 5;
+  this.velocity = new vec2(Math.cos(45) * this.speed * -1, Math.sin(25) * this.speed);
   this.radius = 12;
 }
 
 Ball.prototype.draw = function() {
   ballCtx.beginPath();
+  ballCtx.fillStyle = 'Green';
   ballCtx.arc(this.x, this.y, this.radius, 0, 2*Math.PI, false);
-  ballCtx.stroke();
+  ballCtx.closePath();
+  ballCtx.fill();
 }
 
 Ball.prototype.update = function() {
@@ -17,23 +20,27 @@ Ball.prototype.update = function() {
 }
 
 function checkCollission() {
-  if (ball.y > 600) {
-    ball.newYVelocity();
+  if (ball.y > HEIGHT) {
+    ball.newYDirection();
   } else if ( ball.y < 5) {
-    ball.newYVelocity();
+    ball.newYDirection();
   } else if ( ball.x > WIDTH) {
-    ball.newXVelocity();
+    ball.newXDirection();
   } else if (ball.x < 0) {
-    ball.newXVelocity();
+    ball.newXDirection();
+  } else if (Math.round(ball.x) == player.x+25 &&
+             Math.round(ball.y)-25 <= player.y &&
+             Math.round(ball.y)+25 >= player.y) {
+    ball.newXDirection();
   }
 }
 
-Ball.prototype.newYVelocity = function() {
+Ball.prototype.newYDirection = function() {
   this.velocity.x *= 1;
   this.velocity.y *= -1;
 }
 
-Ball.prototype.newXVelocity = function() {
+Ball.prototype.newXDirection = function() {
   this.velocity.x *= -1;
   this.velocity.x *= 1;
 }
