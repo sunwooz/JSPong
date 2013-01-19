@@ -15,3 +15,4 @@ Known Bugs
 ----------
 
 + Nothing shows up on Firefox
++ Paddle doesn't work if screen size is different
