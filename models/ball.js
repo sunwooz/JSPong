@@ -19,7 +19,7 @@ Ball.prototype.update = function() {
   this.y += this.velocity.y;
 }
 
-function checkCollission() {
+function checkCollision() {
   if (ball.y > HEIGHT) {
     ball.newYDirection();
   } else if ( ball.y < 5) {
