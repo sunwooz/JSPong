@@ -5,7 +5,7 @@ function Player(y) {
   this.height = 60;
 
   this.update = function() {
-    $("#ballCanvas").mousemove(function(event) {
+    $("#c").mousemove(function(event) {
       tempY = event.pageY;
     });
     this.y = tempY;
@@ -13,9 +13,9 @@ function Player(y) {
 }
 
 Player.prototype.draw = function() {
-  playerCtx.beginPath();
-  playerCtx.fillStyle = 'Pink';
-  playerCtx.closePath();
-  playerCtx.fillRect(this.x, this.y-25, this.width, this.height);
+  ctx.beginPath();
+  ctx.fillStyle = 'Pink';
+  ctx.closePath();
+  ctx.fillRect(this.x, this.y-25, this.width, this.height);
 }
 

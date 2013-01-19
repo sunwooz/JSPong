@@ -2,16 +2,16 @@ function Ball(x, y) {
   this.x = x;
   this.y = y;
   this.speed = 5;
-  this.velocity = new vec2(Math.cos(45) * this.speed * -1, Math.sin(25) * this.speed);
+  this.velocity = new vec2(Math.cos(45) * this.speed * -1, Math.sin(45) * this.speed);
   this.radius = 12;
 }
 
 Ball.prototype.draw = function() {
-  ballCtx.beginPath();
-  ballCtx.fillStyle = 'Green';
-  ballCtx.arc(this.x, this.y, this.radius, 0, 2*Math.PI, false);
-  ballCtx.closePath();
-  ballCtx.fill();
+  ctx.beginPath();
+  ctx.fillStyle = 'Green';
+  ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI, false);
+  ctx.closePath();
+  ctx.fill();
 }
 
 Ball.prototype.update = function() {

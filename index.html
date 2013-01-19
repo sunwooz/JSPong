@@ -1,48 +1,27 @@
 <html>
   <style>
-    #playerCanvas {
+    #c {
       margin: 0;
       width: 100%;
       height: 100%;
       position:absolute;
-      left: 0px;
-      top: 0px;
-    }
-    #ballCanvas {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0px;
-      top: 0px;
     }
     body {
       margin: 0;
       padding: 0;
     }
-    #fullscreen {
-      position:absolute;
-      top: 90%;
-      left: 10px;
-    }
-    .removeCursor {
-      cursor:none;
-    }
   </style>
   <body>
 
     <div id="gameArea">
-      <canvas id="playerCanvas"></canvas>
-      <canvas id="ballCanvas"></canvas>
-      <!-- <button id="fullscreen">Click to Play</button> -->
+      <canvas id="c"></canvas>
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
-      var playerCanvas;
-      var playerCtx;
-      var ballCanvas;
-      var ballCtx;
+      var canvas;
+      var ctx;
+      var fps;
 
       var ball;
       var player;
@@ -61,15 +40,11 @@
       window.onload = init;
 
       function init() {
-        playerCanvas = document.getElementById('playerCanvas');
-        playerCtx = playerCanvas.getContext('2d');
-        ballCanvas = document.getElementById('ballCanvas');
-        ballCtx = ballCanvas.getContext('2d');
+        canvas = document.getElementById('c');
+        ctx = canvas.getContext('2d');
 
-        playerCanvas.width = WIDTH;
-        playerCanvas.height = HEIGHT;
-        ballCanvas.width = WIDTH;
-        ballCanvas.height = HEIGHT;
+        canvas.width = WIDTH;
+        canvas.height = HEIGHT;
 
         spawnObjects();
         animLoop();
@@ -90,20 +65,33 @@
                  window.setTimeout(callback, 1000 / 60);
                }
       })();
-
+      var lastLoop = new Date;
       function animLoop() {
         requestAnimFrame(animLoop);
-        ballCtx.clearRect(0, 0, WIDTH, HEIGHT);
-        playerCtx.clearRect(0, 0, WIDTH, HEIGHT);
+
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+        writeFps();
+
+        ctx.font = '40px sans';
+        ctx.fillText(Math.round(fps), center.x, center.y);
+
         checkCollission();
         update();
         render();
+      }
+
+      function writeFps() {
+        var thisLoop = new Date;
+        fps = 1000 / (thisLoop - lastLoop);
+        lastLoop = thisLoop;
       }
 
       function update() {
         player.update();
         ball.update();
       }
+
       function render() {
         player.draw();
         ball.draw();
