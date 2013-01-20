@@ -14,9 +14,8 @@
   <body>
 
     <div id="gameArea">
-      <canvas id="c"></canvas>
+      <canvas id="c" width="400" height="300"></canvas>
     </div>
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
       var canvas;
@@ -29,9 +28,6 @@
       var newWidth;
       var newHeight;
 
-      var WIDTH = 400;
-      var HEIGHT = 300;
-
       function vec2(x, y) {
         this.x = x;
         this.y = y;
@@ -41,14 +37,13 @@
 
       function init() {
         resize();
-        center = new vec2(newWidth/2, newHeight/2)
         spawnObjects();
         animLoop();
       }
 
       function spawnObjects() {
         player = new Player(20);
-        ball = new Ball(center.x, center.y);
+        ball = new Ball(newWidth/2, newWidth/2);
       }
 
       window.requestAnimFrame = (function() {
@@ -83,6 +78,6 @@
     </script>
     <script type="text/javascript" src="entities/ball.js"></script>
     <script type="text/javascript" src="entities/player.js"></script>
-    <script type="text/javascript" src="gui/resize.js"></script>
+    <script type="text/javascript" src="entities/resize.js"></script>
   </body>
 </html>
