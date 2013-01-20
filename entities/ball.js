@@ -7,11 +7,13 @@ function Ball(x, y) {
 }
 
 Ball.prototype.draw = function() {
+  ctx.save();
   ctx.beginPath();
   ctx.fillStyle = 'Green';
   ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI, false);
   ctx.fill();
   ctx.closePath();
+  ctx.restore();
 }
 
 Ball.prototype.update = function() {
@@ -20,11 +22,11 @@ Ball.prototype.update = function() {
 }
 
 function checkCollision() {
-  if (ball.y > HEIGHT) {
+  if (ball.y > newHeight) {
     ball.newYDirection();
-  } else if ( ball.y < 5) {
+  } else if ( ball.y < 0) {
     ball.newYDirection();
-  } else if ( ball.x > WIDTH) {
+  } else if ( ball.x > newWidth) {
     ball.newXDirection();
   } else if (ball.x < 0) {
     ball.newXDirection();
