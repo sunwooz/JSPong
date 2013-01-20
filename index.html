@@ -37,6 +37,9 @@
 
       function init() {
         resize();
+        window.addEventListener('resize', function() {
+          resize();
+        });
         spawnObjects();
         animLoop();
       }
