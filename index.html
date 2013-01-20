@@ -1,14 +1,14 @@
 <html>
   <style>
     #c {
-      margin: 0;
+      border: 1px solid black;
       width: 100%;
       height: 100%;
-      position:absolute;
     }
-    body {
-      margin: 0;
-      padding: 0;
+    #gameArea {
+      position:absolute;
+      left:50%;
+      top: 50%;
     }
   </style>
   <body>
@@ -21,15 +21,16 @@
     <script type="text/javascript">
       var canvas;
       var ctx;
-
       var ball;
       var player;
       var tempY;
+      var center;
 
-      var WIDTH = $(window).width();
-      var HEIGHT = $(window).height();
+      var newWidth;
+      var newHeight;
 
-      var center = new vec2(WIDTH/2, HEIGHT/2)
+      var WIDTH = 400;
+      var HEIGHT = 300;
 
       function vec2(x, y) {
         this.x = x;
@@ -39,12 +40,8 @@
       window.onload = init;
 
       function init() {
-        canvas = document.getElementById('c');
-        ctx = canvas.getContext('2d');
-
-        canvas.width = WIDTH;
-        canvas.height = HEIGHT;
-
+        resize();
+        center = new vec2(newWidth/2, newHeight/2)
         spawnObjects();
         animLoop();
       }
@@ -52,7 +49,6 @@
       function spawnObjects() {
         player = new Player(20);
         ball = new Ball(center.x, center.y);
-        ball2 = new Ball(100,100);
       }
 
       window.requestAnimFrame = (function() {
@@ -62,14 +58,14 @@
                window.oRequestAnimationFrame ||
                window.msRequestAnimationFrame ||
                function(callback) {
-                 window.setTimeout(callback, 1000 / 60);
+                 return window.setTimeout(callback, 1000 / 60);
                }
       })();
 
       function animLoop() {
         requestAnimFrame(animLoop);
 
-        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        ctx.clearRect(0, 0, newWidth, newHeight);
 
         checkCollision();
         update();
@@ -85,7 +81,8 @@
         ball.draw();
       }
     </script>
-    <script type="text/javascript" src="models/ball.js"></script>
-    <script type="text/javascript" src="models/player.js"></script>
+    <script type="text/javascript" src="entities/ball.js"></script>
+    <script type="text/javascript" src="entities/player.js"></script>
+    <script type="text/javascript" src="gui/resize.js"></script>
   </body>
 </html>
