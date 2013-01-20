@@ -10,6 +10,7 @@ Goals
 + AI or human opponent
   + Use node.js for multiplayer functionality
 + Smooth Animations
++ Automatically resize as window is resized.
 
 Known Bugs
 ----------
