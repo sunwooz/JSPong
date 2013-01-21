@@ -22,15 +22,17 @@ Ball.prototype.update = function() {
   this.y += this.velocity.y;
 }
 
-Ball.prototype.checkCollision = function() {
+Ball.prototype.wallCollision = function() {
   if (this.y > newHeight) {
-    this.newYDirection();
+    this.oppositeYDirection();
   } else if ( this.y < 0) {
-    this.newYDirection();
+    this.oppositeYDirection();
   } else if ( this.x > newWidth) {
-    this.newXDirection();
+    alert('YOU WIN');
+    spawnBall();
   } else if (this.x < 0) {
-    this.newXDirection();
+    alert('YOU LOSE');
+    spawnBall();
   }
 }
 
