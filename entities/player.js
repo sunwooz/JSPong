@@ -26,4 +26,14 @@ function paddleXCollision() {
   return (ball.x - player.x);
 }
 
+function ballHitPaddle() {
+  if (paddleXCollision() <= player.width && ball.y >= player.y && ball.y <= player.y + player.height) {
+    if (ball.canBounce == true) {
+      ball.newXDirection();
+      ball.canBounce = false;
+      window.setTimeout(function() {
+        ball.canBounce = true;
+      }, 2000)
+    }
+  }
 }
