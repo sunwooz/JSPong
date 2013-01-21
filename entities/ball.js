@@ -44,7 +44,13 @@ Ball.prototype.wallCollision = function() {
   }
 }
 
-Ball.prototype.newYDirection = function() {
+Ball.prototype.newXDirection = function() {
+  var _plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+  this.velocity.x *= _plusOrMinus;
+  this.velocity.y *= _plusOrMinus;
+}
+
+Ball.prototype.oppositeYDirection = function() {
   this.velocity.x *= 1;
   this.velocity.y *= -1;
 }
