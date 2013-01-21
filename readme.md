@@ -6,7 +6,7 @@ Here's the [demo](http://sunwooz.xp3.biz/ "Demo").
 Goals
 -----
 
-+ Don't use third party libraries
++ Don't use frameworks/libraries except node.js
 + AI or human opponent
   + Use node.js for multiplayer functionality
 + Smooth Animations
