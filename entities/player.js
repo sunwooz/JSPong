@@ -21,3 +21,9 @@ Player.prototype.draw = function() {
 function spawnPlayer() {
   player = new Player(20);
 }
+
+function paddleXCollision() {
+  return (ball.x - player.x);
+}
+
+}
