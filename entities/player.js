@@ -3,7 +3,6 @@ function Player(y) {
   this.y = y;
   this.width = 5;
   this.height = 60;
-  this.canBounce = true;
 
   var _that = this;
 
@@ -27,13 +26,11 @@ function paddleXCollision() {
 }
 
 function ballHitPaddle() {
-  if (paddleXCollision() <= player.width && ball.y >= player.y && ball.y <= player.y + player.height) {
-    if (ball.canBounce == true) {
-      ball.newXDirection();
-      ball.canBounce = false;
-      window.setTimeout(function() {
-        ball.canBounce = true;
-      }, 2000)
-    }
+  if (paddleXCollision() <= player.width && ball.y >= player.y && ball.y <= player.y + player.height && ball.canBounce == true) {
+    ball.newXDirection();
+    ball.canBounce = false;
+    window.setTimeout(function() {
+      ball.canBounce = true;
+    }, 2000)
   }
 }
