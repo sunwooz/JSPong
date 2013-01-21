@@ -36,10 +36,8 @@ Ball.prototype.wallCollision = function() {
   } else if ( this.y < 0) {
     this.oppositeYDirection();
   } else if ( this.x > newWidth) {
-    alert('YOU WIN');
     spawnBall();
   } else if (this.x < 0) {
-    alert('YOU LOSE');
     spawnBall();
   }
 }
