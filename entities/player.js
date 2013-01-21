@@ -6,7 +6,7 @@ function Player(y) {
 
   var that = this;
 
-  $('#c').mousemove(function(event) {
+  window.addEventListener('mousemove', function(event) {
     that.y = event.pageY;
   });
 }
