@@ -5,10 +5,10 @@ function Player(y) {
   this.height = 60;
   this.canBounce = true;
 
-  var that = this;
+  var _that = this;
 
   window.addEventListener('mousemove', function(event) {
-    that.y = event.pageY;
+    _that.y = event.pageY;
   });
 }
 
