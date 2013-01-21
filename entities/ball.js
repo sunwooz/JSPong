@@ -8,6 +8,14 @@ function Ball(x, y) {
   this.radius = 12;
 }
 
+function spawnBall() {
+  ball = new Ball(newWidth/2, newHeight/2);
+  ball.newXDirection();
+  var _randomAngle = Math.random()*45;
+  var _plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+  ball.velocity = new vec2(Math.cos(_randomAngle) * ball.speed * _plusOrMinus, Math.sin(_randomAngle) * ball.speed * _plusOrMinus);
+}
+
 Ball.prototype.draw = function() {
   ctx.fillStyle = 'Green';
   ctx.beginPath();
