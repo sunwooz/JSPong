@@ -24,3 +24,10 @@ function resize() {
   canvas.width = newWidth;
   canvas.height = newHeight;
 }
+
+function resizeWindow() {
+  resize();
+  window.addEventListener('resize', function() {
+    resize();
+  });
+}
