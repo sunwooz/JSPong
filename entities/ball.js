@@ -55,7 +55,7 @@ Ball.prototype.oppositeYDirection = function() {
   this.velocity.y *= -1;
 }
 
-Ball.prototype.newXDirection = function() {
+Ball.prototype.oppositeXDirection = function() {
   this.velocity.x *= -1;
   this.velocity.x *= 1;
 }
