@@ -18,15 +18,8 @@
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
-      var canvas;
-      var ctx;
-      var ball;
-      var player;
-      var tempY;
-      var center;
-
-      var newWidth;
-      var newHeight;
+      var canvas, ctx, ball, player, tempY, center, newWidth, newHeight;
+      var balls = [];
 
       function vec2(x, y) {
         this.x = x;
@@ -46,7 +39,11 @@
 
       function spawnObjects() {
         player = new Player(20);
-        ball = new Ball(newWidth/2, newWidth/2);
+        for (i=1; i<1000;i++) {
+          var randomX = Math.floor(Math.random()*newWidth);
+          var randomY = Math.floor(Math.random()*newHeight);
+          balls.push(new Ball(randomX, randomY));
+        }
       }
 
       window.requestAnimFrame = (function() {
@@ -64,23 +61,27 @@
         requestAnimFrame(animLoop);
 
         ctx.clearRect(0, 0, newWidth, newHeight);
-
-        checkCollision();
         update();
         render();
       }
 
       function update() {
-        ball.update();
+        for (i=0; i<balls.length;i++) {
+          balls[i].checkCollision();
+          balls[i].update();
+        }
       }
 
       function render() {
         player.draw();
-        ball.draw();
+        for(i=0;i<balls.length;i++) {
+          balls[i].draw();
+        }
       }
     </script>
     <script type="text/javascript" src="entities/ball.js"></script>
     <script type="text/javascript" src="entities/player.js"></script>
     <script type="text/javascript" src="entities/resize.js"></script>
+    <script type="text/javascript" src="entities/range.js"></script>
   </body>
 </html>

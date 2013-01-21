@@ -14,7 +14,6 @@ function Player(y) {
 Player.prototype.draw = function() {
   ctx.beginPath();
   ctx.fillStyle = 'Pink';
-  ctx.closePath();
   ctx.fillRect(this.x, this.y-25, this.width, this.height);
 }
 
