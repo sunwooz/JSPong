@@ -3,6 +3,7 @@ function Player(y) {
   this.y = y;
   this.width = 5;
   this.height = 60;
+  this.canBounce = true;
 
   var that = this;
 
