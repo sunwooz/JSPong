@@ -2,9 +2,9 @@ function Ball(x, y) {
   this.x = x;
   this.y = y;
   this.speed = 5;
-  var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-  var randomAngle = Math.random()*45;
-  this.velocity = new vec2(Math.cos(randomAngle) * this.speed * plusOrMinus, Math.sin(randomAngle) * this.speed * plusOrMinus);
+  var _plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+  var _randomAngle = Math.random()*45;
+  this.velocity = new vec2(Math.cos(_randomAngle) * this.speed * _plusOrMinus, Math.sin(_randomAngle) * this.speed * _plusOrMinus);
   this.radius = 12;
 }
 
