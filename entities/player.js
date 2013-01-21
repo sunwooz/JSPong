@@ -1,7 +1,7 @@
 function Player(y) {
   this.x = 60;
   this.y = y;
-  this.width = 20;
+  this.width = 5;
   this.height = 60;
 
   var that = this;
