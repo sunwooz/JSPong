@@ -18,3 +18,6 @@ Player.prototype.draw = function() {
   ctx.fillRect(this.x, this.y-25, this.width, this.height);
 }
 
+function spawnPlayer() {
+  player = new Player(20);
+}
