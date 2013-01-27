@@ -15,7 +15,4 @@ Goals
 Known Bugs
 ----------
 
-+ Speed of ball is vastly different in different browsers
-  + Chrome is a lot faster than Firefox
-+ Top and bottom of paddle doesn't work
-+ Framerate suffers/ball goes through paddle -- solution: add deltatime based animation
++ Currently writing a more efficient collision detection system
