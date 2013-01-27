@@ -22,8 +22,6 @@ Ball.prototype.draw = function() {
   ctx.beginPath();
   ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI, false);
   ctx.fill();
-  ctx.strokeStyle = 'yellow';
-  ctx.stroke();
 }
 
 Ball.prototype.update = function() {
