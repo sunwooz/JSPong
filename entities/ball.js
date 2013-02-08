@@ -6,7 +6,7 @@ function Ball(x, y) {
   var _plusOrMinus = Math.random() < 0.5 ? -1 : 1;
   var _randomAngle = Math.random()*45;
   this.velocity = new vec2(Math.cos(_randomAngle) * this.speed * _plusOrMinus, Math.sin(_randomAngle) * this.speed * _plusOrMinus);
-  this.radius = 12;
+  this.radius = 16;
 }
 
 function spawnBall() {
@@ -18,10 +18,18 @@ function spawnBall() {
 }
 
 Ball.prototype.draw = function() {
-  ctx.fillStyle = 'Green';
-  ctx.beginPath();
-  ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI, false);
-  ctx.fill();
+  ctx.drawImage(image, xPos, yPos, frameXSize, frameXSize, this.x, this.y, frameXSize, frameXSize);
+  xPos += frameXSize;
+  index += 1;
+  if (index >= 60) {
+    index = 0;
+    xPos = 0;
+    yPos = 0;
+  }
+  else if (xPos + frameXSize > image.width) {
+    xPos = 0;
+    yPos += frameXSize;
+  }
 }
 
 Ball.prototype.update = function() {
@@ -30,13 +38,13 @@ Ball.prototype.update = function() {
 }
 
 Ball.prototype.wallCollision = function() {
-  if (this.y > newHeight) {
+  if (this.y > newHeight-50) {
     this.oppositeYDirection();
-  } else if ( this.y < 0) {
+  } else if ( this.y < 0-15) {
     this.oppositeYDirection();
   } else if ( this.x > newWidth) {
     spawnBall();
-  } else if (this.x < 0) {
+  } else if (this.x < -40) {
     spawnBall();
   }
 }
